@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Hotel.WEB.Models.RoomModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Rooms</h2>
+
+<a href='@Url.Action("Create", "Room")' class="btn btn-primary active">Add new room</a>
+<br />
+<br />
+<table class="table table-hover table-bordered table-condensed">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id
+       )
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Active)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryId)
+        </th>
+
+    </tr>
+
+    @foreach (var room in Model)
+    {
+        <tr>
+            <td>
+                @room.Id
+            </td>
+            <td>
+                @room.Name
+            </td>
+            <td>
+                @room.Active
+
+            </td>
+            <td>
+                @room.CategoryId
+
+            </td>
+            
+            <td>
+                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                @Html.ActionLink("Edit", "Edit", new { id = room.Id }) |
+                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                @Html.ActionLink("Remove", "Delete", new { id = room.Id }) 
+
+            </td>
+        </tr>
+    }
+
+</table>
+

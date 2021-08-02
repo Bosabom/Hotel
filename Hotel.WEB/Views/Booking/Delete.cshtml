@@ -1,0 +1,83 @@
+﻿@model Hotel.WEB.Models.BookingModel
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Booking</h4>
+    <table class="table table-hover">
+        <tr>
+            <th>
+                @Html.LabelFor(model => model.Id)
+            </th>
+            <td>
+                @Model.Id
+            </td>
+        </tr>
+
+        <tr>
+            <th>
+                @Html.LabelFor(model => model.GuestId)
+            </th>
+            <td>
+                @Model.GuestId
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.LabelFor(model => model.RoomId)
+            </th>
+            <td>
+                @Model.RoomId
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.LabelFor(model => model.EnterDate)
+            </th>
+            <td>
+                @Model.EnterDate
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.LabelFor(model => model.LeaveDate)
+            </th>
+            <td>
+                @Model.LeaveDate
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.LabelFor(model => model.IsGuestSettledIn)
+            </th>
+            <td>
+                @Model.IsGuestSettledIn
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.LabelFor(model => model.BookingDate)
+            </th>
+            <td>
+                @Model.BookingDate
+            </td>
+        </tr>
+    </table>
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Hotel.WEB.Models.RoomModel>
+
+@{
+    ViewBag.Title = "FreeRooms";
+}
+
+<h2>FreeRooms</h2>
+
+<table class="table table-hover table-bordered table-condensed">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Active)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryId)
+        </th>
+
+    </tr>
+
+    @foreach (var room in Model)
+    {
+        <tr>
+            <td>
+                @room.Id
+            </td>
+            <td>
+                @room.Name
+            </td>
+            <td>
+                @room.Active
+
+            </td>
+            <td>
+                @room.CategoryId
+
+            </td>
+
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Hotel.WEB.Models.PriceCategoryModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Price Categories</h2>
+
+<a href='@Url.Action("Create", "PriceCategory")' class="btn btn-primary active">Add new price category</a>
+<br />
+<br />
+<table class="table table-hover table-bordered table-condensed">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id
+       )
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryId)
+        </th>
+       
+    </tr>
+
+    @foreach (var price_category in Model)
+    {
+<tr>
+    <td>
+        @price_category.Id
+    </td>
+    <td>
+        @price_category.Price
+    </td>
+    <td>
+        @price_category.StartDate
+
+    </td>
+    <td>
+        @price_category.EndDate
+
+    </td>
+    <td>
+        @price_category.CategoryId
+    </td>
+    <td>
+        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+        @Html.ActionLink("Remove", "Delete", new { id = price_category.Id })
+    </td>
+</tr>
+    }
+
+</table>
