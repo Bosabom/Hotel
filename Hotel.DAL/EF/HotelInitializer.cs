@@ -270,6 +270,7 @@ namespace Hotel.DAL.EF
 
             context.SaveChanges();
         }
+       
         protected override void Seed(HotelModel context)
         {
 
@@ -278,6 +279,7 @@ namespace Hotel.DAL.EF
             RoomInitializer(context);
             PriceCategoryInitializer(context);
             BookingInitializer(context);
+           
         }
 
     }

@@ -16,6 +16,8 @@ namespace Hotel.DAL.Interfaces
         IRepository<Booking> Bookings { get; }
         
         IUserRepository<User> Users { get; }
+
+        ILogRepository<Log> Logs { get; }
         void Save();
 
     }

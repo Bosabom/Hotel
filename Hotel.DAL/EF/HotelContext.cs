@@ -23,8 +23,9 @@ namespace Hotel.DAL.EF
         public DbSet<Category> Categories { get; set; }
         public DbSet<PriceCategory> PriceCategories { get; set; }
         public DbSet<Booking> Bookings { get; set; }
-        
         public DbSet<User> Users { get; set; }
+
+        public DbSet<Log> Logs { get; set; }
 
     }
 }

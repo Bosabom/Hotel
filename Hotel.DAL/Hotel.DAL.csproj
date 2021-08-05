@@ -59,9 +59,11 @@
     <Compile Include="Entities\Booking.cs" />
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\Guest.cs" />
+    <Compile Include="Entities\Log.cs" />
     <Compile Include="Entities\PriceCategory.cs" />
     <Compile Include="Entities\Room.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="Interfaces\ILogRepository.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IUserRepository.cs" />
     <Compile Include="Interfaces\IWorkUnit.cs" />
@@ -70,6 +72,7 @@
     <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\EFWorkUnit.cs" />
     <Compile Include="Repositories\GuestRepository.cs" />
+    <Compile Include="Repositories\LogRepository.cs" />
     <Compile Include="Repositories\PriceCategoryRepository.cs" />
     <Compile Include="Repositories\RoomRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />

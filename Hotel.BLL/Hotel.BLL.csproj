@@ -57,6 +57,7 @@
     <Compile Include="DTO\BookingDTO.cs" />
     <Compile Include="DTO\CategoryDTO.cs" />
     <Compile Include="DTO\GuestDTO.cs" />
+    <Compile Include="DTO\LogDTO.cs" />
     <Compile Include="DTO\PriceCategoryDTO.cs" />
     <Compile Include="DTO\RoomDTO.cs" />
     <Compile Include="DTO\UserDTO.cs" />
@@ -65,6 +66,7 @@
     <Compile Include="Interfaces\ICategoryService.cs" />
     <Compile Include="Interfaces\IGuestService.cs" />
     <Compile Include="Interfaces\IBookingService.cs" />
+    <Compile Include="Interfaces\ILogService.cs" />
     <Compile Include="Interfaces\IPriceCategoryService.cs" />
     <Compile Include="Interfaces\IRoomService.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
@@ -72,6 +74,7 @@
     <Compile Include="Services\BookingService.cs" />
     <Compile Include="Services\CategoryService.cs" />
     <Compile Include="Services\GuestService.cs" />
+    <Compile Include="Services\LogService.cs" />
     <Compile Include="Services\PriceCategoryService.cs" />
     <Compile Include="Services\RoomService.cs" />
     <Compile Include="Services\UserService.cs" />
