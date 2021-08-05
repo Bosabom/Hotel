@@ -1,29 +1,27 @@
-﻿@model IEnumerable<Hotel.WEB.Models.RoomModel>
-
+﻿@model Hotel.WEB.Models.FreeRoomsModel
 @{
     ViewBag.Title = "FreeRooms";
 }
 
-<h2>FreeRooms</h2>
-
+<h2>Free Rooms</h2>
+<h4>
+    List of free rooms on period @Model.FirstDate - @Model.SecondDate
+</h4>
 <table class="table table-hover table-bordered table-condensed">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Id)
+            Id
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Active)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CategoryId)
+            Category Id
         </th>
 
     </tr>
 
-    @foreach (var room in Model)
+    @foreach (var room in Model.FreeRooms)
     {
         <tr>
             <td>
@@ -32,10 +30,7 @@
             <td>
                 @room.Name
             </td>
-            <td>
-                @room.Active
-
-            </td>
+            
             <td>
                 @room.CategoryId
 
@@ -45,3 +40,7 @@
     }
 
 </table>
+<div>
+    @Html.ActionLink("Back to bookings", "Index")
+    @Html.ActionLink("Return", "GetFreeRoomsOnPeriod")
+</div>

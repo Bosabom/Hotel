@@ -12,6 +12,7 @@ namespace Hotel.WEB.Models
         public int Id { get; set; }
         [Required]
         [DisplayName("Room Title")]
+
         public string Name { get; set; }
         [Required]
         [DisplayName("Active Status")]
@@ -21,5 +22,10 @@ namespace Hotel.WEB.Models
         [DisplayName("Category ID")]
 
         public int CategoryId { get; set; }
+
+        public override string ToString()
+        {
+            return $"Room Title = {Name}; Status = {Active}; Category ID = {CategoryId}";
+        }
     }
 }

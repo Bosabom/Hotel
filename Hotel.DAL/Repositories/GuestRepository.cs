@@ -30,7 +30,7 @@ namespace Hotel.DAL.Repositories
 
         public void Create(Guest guest)
         {
-                db.Guests.Add(guest);      
+            db.Guests.Add(guest);
         }
         public void Update(int id, Guest guest) { }
         public void Delete(int id)

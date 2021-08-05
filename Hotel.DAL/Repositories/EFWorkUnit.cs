@@ -18,6 +18,7 @@ namespace Hotel.DAL.Repositories
         private PriceCategoryRepository priceCategoryRepository;
         private BookingRepository bookingRepository;
         private UserRepository userRepository;
+        private LogRepository logRepository;
         public EFWorkUnit(string connectionString)
         {
             db = new HotelModel(connectionString);
@@ -93,6 +94,18 @@ namespace Hotel.DAL.Repositories
                     userRepository = new UserRepository(db);
                 }
                 return userRepository;
+            }
+        }
+
+        public ILogRepository<Log> Logs
+        {
+            get
+            {
+                if (logRepository == null)
+                {
+                    logRepository = new LogRepository(db);
+                }
+                return logRepository;
             }
         }
         public void Save()

@@ -49,7 +49,6 @@ namespace Hotel.BLL.Services
 
            Database.Guests.Create(mapper_reverse.Map<GuestDTO, Guest>(newGuest));
            Database.Save();
-           
         }
         public void Delete(int id)
         {

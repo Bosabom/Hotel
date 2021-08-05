@@ -8,21 +8,20 @@ using Hotel.DAL.Entities;
 using Hotel.DAL.Interfaces;
 namespace Hotel.DAL.Repositories
 {
-    class UserRepository : IUserRepository<User>
+    class LogRepository : ILogRepository<Log>
     {
         private HotelModel db;
-        public UserRepository(HotelModel db)
+        public LogRepository(HotelModel db)
         {
             this.db = db;
         }
-        public void Create(User new_user)
+        public void Create(Log new_log)
         {
-            db.Users.Add(new_user);
+            db.Logs.Add(new_log);
         }
-        public User Get(User user)
+        public IEnumerable<Log> GetAll()
         {
-            return db.Users.FirstOrDefault(u=>u.Login == user.Login);
+            return db.Logs;
         }
-       
     }
 }

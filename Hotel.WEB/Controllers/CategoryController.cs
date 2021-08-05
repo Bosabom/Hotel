@@ -13,35 +13,55 @@ namespace Hotel.WEB.Controllers
     public class CategoryController : Controller
     {
      
-        ICategoryService service;
-        IMapper mapper;
+        ICategoryService category_service;
+        ILogService log_service;
 
-        public CategoryController(ICategoryService service)
+        IMapper mapper;
+        IMapper log_mapper;
+
+        public CategoryController(ICategoryService service, ILogService _log_service)
         {
-            this.service = service;
+            category_service = service;
+            log_service = _log_service;
+
             mapper = new MapperConfiguration(cfg =>
               cfg.CreateMap<CategoryDTO, CategoryModel>()).CreateMapper();
+            log_mapper = new MapperConfiguration(cfg =>
+                cfg.CreateMap<LogModel, LogDTO>()).CreateMapper();
         }
-        // GET: Guest
+        private void CreateCategoryLog(string _action, int _id, string _description)
+        {
 
+            log_service.Create(log_mapper.Map<LogModel, LogDTO>(new LogModel()
+            {
+                LogDate = DateTime.Now,
+                User = User.Identity.Name,
+                Action = _action,
+                Entity = "Category",
+                EntityId = _id,
+                Details = _description
+            }));
+        }
         public ActionResult Index()
         {
-            var all_categories = mapper.Map<IEnumerable<CategoryDTO>, List<CategoryModel>>(service.GetAllCategories());
+            var all_categories = mapper.Map<IEnumerable<CategoryDTO>, List<CategoryModel>>(category_service.GetAllCategories());
             return View(all_categories);
         }
-        // GET: Guest/Create
         public ActionResult Create()
         {
             return View();
         }
-        // POST: Guest/Create
         [HttpPost]
         public ActionResult Create(CategoryModel new_category)
         {
             try
             {
-                // TODO: Add insert logic here
-                service.Create(mapper.Map<CategoryModel, CategoryDTO>(new_category));
+                category_service.Create(mapper.Map<CategoryModel, CategoryDTO>(new_category));
+
+                var category_for_log = mapper.Map<IEnumerable<CategoryDTO>, List<CategoryModel>>(category_service.GetAllCategories()).
+                   FirstOrDefault(g => g.ToString() == new_category.ToString());
+
+                CreateCategoryLog("Create",category_for_log.Id,category_for_log.ToString());
 
                 return RedirectToAction("Index");
             }
@@ -50,10 +70,9 @@ namespace Hotel.WEB.Controllers
                 return View();
             }
         }
-        // GET: Default/Delete/5
         public ActionResult Delete(int id)
         {
-            var category_for_delete = mapper.Map<CategoryDTO, CategoryModel>(service.Get(id));
+            var category_for_delete = mapper.Map<CategoryDTO, CategoryModel>(category_service.Get(id));
             return View(category_for_delete);
         }
 
@@ -62,8 +81,11 @@ namespace Hotel.WEB.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
-                service.Delete(id);
+                category = mapper.Map<CategoryDTO, CategoryModel>(category_service.Get(id));
+                category_service.Delete(id);
+
+                CreateCategoryLog("Delete", id, category.ToString());
+
                 return RedirectToAction("Index");
             }
             catch

@@ -14,12 +14,11 @@ namespace Hotel.WEB.Models
 
         [Required]
         [DataType(DataType.Password)]
-        [DisplayName("Enter password")]
         public string Password { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [DisplayName("Please repeat password:")]
+        [DisplayName("Repeat password")]
         [Compare("Password",ErrorMessage ="Passwords didn't match!")]
         public string RepeatPassword { get; set; }
     }
