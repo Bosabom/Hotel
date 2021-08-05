@@ -3,15 +3,14 @@
     ViewBag.Title = "GetProfitForMonth";
 }
 
-<h2>GetProfitOnMonth</h2>
+<h2>Get Profit On Month</h2>
 
 @using (Html.BeginForm("GetProfitForMonth", "Booking", FormMethod.Post))
 {
-    <p>Please, enter date with month that you want to get profit</p>
+    <h4>Please, enter date with month that you want to get profit</h4>
+    <input type="date" value="2021-03-30" name="date" /><br /><br />
 
-    @Html.TextBox("date", "2021-03")
-   
-    <br />
     <p><input type="submit" value="Submit" class="btn btn-primary" /></p>
 }
+@Html.ActionLink("Back to list", "Index")
 

@@ -33,7 +33,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.BookingDate, htmlAttributes: new { @class = "control-label col-md-2" })
     <div class="col-md-10">
-        <h4>Type of Booking</h4>
+        <h4>Type of Booking:</h4>
 
 
         @Html.RadioButton("BookingDate", DateTime.Now, true)
@@ -64,9 +64,9 @@
             <h4>Is guest settled in?</h4>
 
             @Html.RadioButton("IsGuestSettledIn", "true", true)
-            <span>True</span> <br />
+            <span>Yes</span> <br />
             @Html.RadioButton("IsGuestSettledIn", "false")
-            <span>False</span> <br />
+            <span>No</span> <br />
             @Html.ValidationMessageFor(model => model.IsGuestSettledIn, "", new { @class = "text-danger" })
         </div>
     </div>

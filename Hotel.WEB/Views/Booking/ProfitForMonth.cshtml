@@ -1,5 +1,7 @@
-﻿@model double
+﻿@model Hotel.WEB.Models.ProfitModel
 <br />
 
-<h4>Your profit is : @ViewData.Model $</h4>
+<h3>Profit on @Model.Year/@Model.Month is @Model.Profit_For_Month $</h3>
 
+@Html.ActionLink("Back to bookings", "Index")<br />
+@Html.ActionLink("Return", "GetProfitForMonth")

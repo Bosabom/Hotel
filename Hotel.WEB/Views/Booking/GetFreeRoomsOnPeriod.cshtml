@@ -1,17 +1,18 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "GetFreeRoomsOnPeriod";
 }
 
-<h2>GetFreeRooms</h2>
+<h2>Free Rooms Search</h2>
 
-@using (Html.BeginForm("GetFreeRoomsOnPeriod","Booking",FormMethod.Post))
+@using (Html.BeginForm("GetFreeRoomsOnPeriod", "Booking", FormMethod.Post))
 {
-    <p>Date From :</p>
+    <h4>Date From:</h4>
+    <input type="date" value="2021-03-30" name="date_from" /><br /><br />
 
-    @Html.TextBox("date_from", "2021-03-30 00:00:00")
-    <p>Date to :</p>
-    @Html.TextBox("date_to", "2021-06-30 00:00:00")
-    <br />
-    <p><input type="submit" value="Submit"class="btn btn-primary" /></p>
+    <h4>Date To:</h4>
+    <input type="date" value="2021-03-30" name="date_to" /><br/><br/>
+
+
+    <p><input type="submit" value="Search" class="btn btn-primary" /></p>
 }
+@Html.ActionLink("Back to list", "Index")

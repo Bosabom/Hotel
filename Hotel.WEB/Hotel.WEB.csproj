@@ -154,6 +154,7 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\GuestController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LogController.cs" />
     <Compile Include="Controllers\PriceCategoryController.cs" />
     <Compile Include="Controllers\RoomController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -162,8 +163,11 @@
     </Compile>
     <Compile Include="Models\BookingModel.cs" />
     <Compile Include="Models\CategoryModel.cs" />
+    <Compile Include="Models\FreeRoomsModel.cs" />
     <Compile Include="Models\GuestModel.cs" />
+    <Compile Include="Models\LogModel.cs" />
     <Compile Include="Models\PriceCategoryModel.cs" />
+    <Compile Include="Models\ProfitModel.cs" />
     <Compile Include="Models\RegisterUserModel.cs" />
     <Compile Include="Models\RoomModel.cs" />
     <Compile Include="Models\UserModel.cs" />
@@ -171,6 +175,7 @@
     <Compile Include="Utils\BookingModule.cs" />
     <Compile Include="Utils\CategoryModule.cs" />
     <Compile Include="Utils\GuestModule.cs" />
+    <Compile Include="Utils\LogModule.cs" />
     <Compile Include="Utils\NinjectControllerFactory.cs" />
     <Compile Include="Utils\PriceCategoryModule.cs" />
     <Compile Include="Utils\RoomModule.cs" />
@@ -209,8 +214,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Guest\Index.cshtml" />
     <Content Include="Views\Guest\Create.cshtml" />
@@ -237,6 +240,7 @@
     <Content Include="Views\Booking\ProfitForMonth.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\User\Register.cshtml" />
+    <Content Include="Views\Log\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

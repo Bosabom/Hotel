@@ -4,7 +4,7 @@
     Layout = null;
 }
 
-<h2>Login</h2>
+<h2>Log in</h2>
 @Html.ValidationSummary(true)
 @using(Html.BeginForm())
 {
@@ -18,7 +18,7 @@
         @Html.ValidationMessageFor(model => model.Login)
 
     </div>
-    <br />
+    <br /><br />
     <div class="form-group">
         @Html.LabelFor(model => model.Password)
         @Html.EditorFor(model => model.Password)
