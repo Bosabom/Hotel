@@ -17,16 +17,17 @@ namespace Hotel.API.Controllers
     {
         private IGuestService service;
         private IMapper mapper;
+
         public GuestController(IGuestService service)
         {
             this.service = service;
             mapper = new MapperConfiguration(cfg =>
                cfg.CreateMap<GuestDTO, GuestModel>()).CreateMapper();
         }
+
         public IEnumerable<GuestModel> Get()
         {
             var data = service.GetAllGuests();
-
             var guests = mapper.Map<IEnumerable<GuestDTO>, List<GuestModel>>(data);
             return guests;
         }
@@ -38,14 +39,11 @@ namespace Hotel.API.Controllers
             {
                 GuestDTO data = service.Get(id);
                 var guest = new GuestModel();
-
                 if (data != null)
                 {
                     guest = mapper.Map<GuestDTO, GuestModel>(data);
                     return request.CreateResponse(HttpStatusCode.OK, guest);
-
                 }
-
                 return request.CreateResponse(HttpStatusCode.NotFound);
             }
             catch (NullReferenceException ex)
@@ -62,15 +60,12 @@ namespace Hotel.API.Controllers
             {
                 service.Create(mapper.Map<GuestModel, GuestDTO>(value));
                 return request.CreateResponse(HttpStatusCode.Created);
-
             }
             catch (Exception ex)
             {
                 return request.CreateResponse(HttpStatusCode.BadRequest);
             }
-
         }
-
 
         public HttpResponseMessage Delete(HttpRequestMessage request, int id)
         {

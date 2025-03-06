@@ -12,7 +12,6 @@ namespace Hotel.WEB.Controllers
 {
     public class CategoryController : Controller
     {
-     
         ICategoryService category_service;
         ILogService log_service;
 
@@ -29,9 +28,9 @@ namespace Hotel.WEB.Controllers
             log_mapper = new MapperConfiguration(cfg =>
                 cfg.CreateMap<LogModel, LogDTO>()).CreateMapper();
         }
+
         private void CreateCategoryLog(string _action, int _id, string _description)
         {
-
             log_service.Create(log_mapper.Map<LogModel, LogDTO>(new LogModel()
             {
                 LogDate = DateTime.Now,
@@ -42,15 +41,18 @@ namespace Hotel.WEB.Controllers
                 Details = _description
             }));
         }
+
         public ActionResult Index()
         {
             var all_categories = mapper.Map<IEnumerable<CategoryDTO>, List<CategoryModel>>(category_service.GetAllCategories());
             return View(all_categories);
         }
+
         public ActionResult Create()
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult Create(CategoryModel new_category)
         {
@@ -61,7 +63,7 @@ namespace Hotel.WEB.Controllers
                 var category_for_log = mapper.Map<IEnumerable<CategoryDTO>, List<CategoryModel>>(category_service.GetAllCategories()).
                    FirstOrDefault(g => g.ToString() == new_category.ToString());
 
-                CreateCategoryLog("Create",category_for_log.Id,category_for_log.ToString());
+                CreateCategoryLog("Create", category_for_log.Id, category_for_log.ToString());
 
                 return RedirectToAction("Index");
             }
@@ -70,6 +72,7 @@ namespace Hotel.WEB.Controllers
                 return View();
             }
         }
+
         public ActionResult Delete(int id)
         {
             var category_for_delete = mapper.Map<CategoryDTO, CategoryModel>(category_service.Get(id));

@@ -11,7 +11,7 @@ using AutoMapper;
 
 namespace Hotel.BLL.Services
 {
-    public class CategoryService:ICategoryService
+    public class CategoryService : ICategoryService
     {
         private IWorkUnit Database { get; set; }
         IMapper mapper;
@@ -26,6 +26,7 @@ namespace Hotel.BLL.Services
             mapper_reverse = new MapperConfiguration(cfg =>
                cfg.CreateMap<CategoryDTO, Category>()).CreateMapper();
         }
+
         public IEnumerable<CategoryDTO> GetAllCategories()
         {
             return mapper.Map<IEnumerable<Category>, List<CategoryDTO>>(Database.Categories.GetAll());
@@ -35,14 +36,14 @@ namespace Hotel.BLL.Services
         {
             return mapper.Map<Category, CategoryDTO>(Database.Categories.Get(id));
         }
+
         public void Create(CategoryDTO newCategory)
-        {
-            //проверка,а существует ли уже такая категория
+        {   
+            //check if this category exists
             var allCategories = GetAllCategories();
 
             var data = allCategories.Where(c => c.Name == newCategory.Name 
-            && c.Number_Of_Places == newCategory.Number_Of_Places)
-                .FirstOrDefault();
+                        && c.Number_Of_Places == newCategory.Number_Of_Places).FirstOrDefault();
 
             if (data != null)
             {
@@ -52,7 +53,6 @@ namespace Hotel.BLL.Services
             Database.Categories.Create(mapper_reverse.Map<CategoryDTO, Category>(newCategory));
             Database.Save();
         }
-
 
         public void Delete(int id)
         {

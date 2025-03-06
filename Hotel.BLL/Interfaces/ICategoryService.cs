@@ -10,6 +10,7 @@ namespace Hotel.BLL.Interfaces
     public interface ICategoryService
     {
         IEnumerable<CategoryDTO> GetAllCategories();
+
         CategoryDTO Get(int id);
 
         void Create(CategoryDTO CategoryDTO);

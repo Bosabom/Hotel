@@ -9,11 +9,14 @@ namespace Hotel.BLL.DTO
     public class RoomDTO
     {
         public int Id { get; set; }
+
         public string Name { get; set; }
-        public bool Active { get; set; }//если комната активная или перестает существовать
+
+        //if room still active
+        public bool Active { get; set; }
        
         public int CategoryId { get; set; }
-        public CategoryDTO RoomCategory { get; set; }
 
+        public CategoryDTO RoomCategory { get; set; }
     }
 }

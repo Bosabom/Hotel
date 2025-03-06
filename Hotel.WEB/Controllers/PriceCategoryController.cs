@@ -12,16 +12,15 @@ namespace Hotel.WEB.Controllers
 {
     public class PriceCategoryController : Controller
     {
-
         IPriceCategoryService price_category_service;
         ICategoryService category_service;
         ILogService log_service;
 
         IMapper mapper;
         IMapper mapper_reverse;
-
         IMapper log_mapper;
-        public PriceCategoryController(IPriceCategoryService service,ICategoryService categoryService, ILogService _log_service)
+
+        public PriceCategoryController(IPriceCategoryService service, ICategoryService categoryService, ILogService _log_service)
         {
             price_category_service = service;
             category_service = categoryService;
@@ -39,7 +38,6 @@ namespace Hotel.WEB.Controllers
 
         private void CreatePriceCategoryLog(string _action, int _id, string _description)
         {
-
             log_service.Create(log_mapper.Map<LogModel, LogDTO>(new LogModel()
             {
                 LogDate = DateTime.Now,
@@ -50,11 +48,13 @@ namespace Hotel.WEB.Controllers
                 Details = _description
             }));
         }
+
         public ActionResult Index()
         {
             var all_price_categories = mapper.Map<IEnumerable<PriceCategoryDTO>, List<PriceCategoryModel>>(price_category_service.GetAllPriceCategories());
             return View(all_price_categories);
         }
+
         public ActionResult Create()
         {
             return View();
@@ -64,7 +64,7 @@ namespace Hotel.WEB.Controllers
         public ActionResult Create(PriceCategoryModel new_Pricecategory)
         {
             try
-            {   //проверка существования категории с таким id
+            {   
                 var category_with_this_id = category_service.Get(new_Pricecategory.CategoryId);
                 if(category_with_this_id != null)
                 {

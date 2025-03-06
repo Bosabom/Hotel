@@ -38,7 +38,6 @@ namespace Hotel.DAL.Repositories
             Category category = Get(id);
             if (category != null)
                 db.Categories.Remove(category);
-            
         }
     }
 }

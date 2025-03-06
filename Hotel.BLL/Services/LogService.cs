@@ -17,6 +17,7 @@ namespace Hotel.BLL.Services
         private IWorkUnit Database { get; set; }
         IMapper mapper;
         IMapper mapper_reverse;
+
         public LogService(IWorkUnit database)
         {
             this.Database = database;
@@ -26,6 +27,7 @@ namespace Hotel.BLL.Services
             mapper_reverse = new MapperConfiguration(cfg =>
                cfg.CreateMap<Log, LogDTO>()).CreateMapper();
         }
+
         public IEnumerable<LogDTO> GetAll()
         {
            return mapper_reverse.Map<IEnumerable<Log>, List<LogDTO>>(Database.Logs.GetAll());

@@ -13,10 +13,10 @@ namespace Hotel.BLL.Services
 {
     public class RoomService : IRoomService
     {
-
         private IWorkUnit Database { get; set; }
         IMapper mapper;
         IMapper mapper_reverse;
+
         public RoomService(IWorkUnit database)
         {
             this.Database = database;
@@ -38,12 +38,10 @@ namespace Hotel.BLL.Services
        
         public void Create(RoomDTO newRoom)
         {
-            //проверка,а существует ли уже такая комната
             var allRooms = GetAllRooms();
 
             var data = allRooms.Where(c => c.Name == newRoom.Name
-            && c.CategoryId == newRoom.CategoryId)
-                .FirstOrDefault();
+                        && c.CategoryId == newRoom.CategoryId).FirstOrDefault();
 
             if (data != null)
             {
@@ -56,7 +54,6 @@ namespace Hotel.BLL.Services
 
         public void Update(int id,RoomDTO updated_room)
         {
-           
             var old_room = Database.Rooms.Get(id);
             if (old_room != null)
             {
@@ -66,9 +63,9 @@ namespace Hotel.BLL.Services
             else
                 throw new Exception();
         }
+
         public void Delete(int id) 
         {
-            //есть ли комната с таким id?
             var roomWithThisId = Database.Rooms.Get(id);
             if (roomWithThisId != null)
             {

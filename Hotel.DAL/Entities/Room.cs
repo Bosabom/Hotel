@@ -13,11 +13,11 @@ namespace Hotel.DAL.Entities
     {
         [Key]
         public int Id { get; set; }
+
         public string Name { get; set; }
 
-        public bool Active { get; set; }//если комната активная или перестает существовать
+        public bool Active { get; set; }
 
-        //CategoryId - FK на таблицу категорий
         public int CategoryId { get; set; }
 
         [ForeignKey("CategoryId")]

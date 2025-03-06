@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
-//using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Hotel.DAL.Entities
@@ -13,22 +12,25 @@ namespace Hotel.DAL.Entities
     {
         [Key]
         public int Id { get; set; }
-        //Foreign Key на Guest
+
         public int GuestId { get; set; }
+        
         [ForeignKey("GuestId")]
-       // [JsonIgnore]
+        //[JsonIgnore]
         public virtual Guest Guest { get; set; }
 
-        //Foreign Key на Room
         public int RoomId { get; set; }
+        
         [ForeignKey("RoomId")]
         //[JsonIgnore]
         public virtual Room Room { get; set; }
 
         public DateTime? BookingDate { get; set; }
+
         public DateTime EnterDate { get; set; }
 
         public DateTime LeaveDate { get; set; }
+
         public bool IsGuestSettledIn { get; set; }
     }
 }

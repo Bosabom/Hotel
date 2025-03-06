@@ -9,7 +9,7 @@ using Hotel.DAL.Interfaces;
 
 namespace Hotel.DAL.Repositories
 {
-    public class EFWorkUnit :IWorkUnit
+    public class EFWorkUnit : IWorkUnit
     {
         private HotelModel db;
         private RoomRepository roomRepository;
@@ -19,10 +19,10 @@ namespace Hotel.DAL.Repositories
         private BookingRepository bookingRepository;
         private UserRepository userRepository;
         private LogRepository logRepository;
+
         public EFWorkUnit(string connectionString)
         {
             db = new HotelModel(connectionString);
-           
         }
 
         public IRepository<Room> Rooms
@@ -33,10 +33,10 @@ namespace Hotel.DAL.Repositories
                 {
                     roomRepository = new RoomRepository(db);
                 }
-
                 return roomRepository;
             }
         }
+
         public IRepository<Guest> Guests 
         {
             get
@@ -45,10 +45,10 @@ namespace Hotel.DAL.Repositories
                 {
                     guestRepository = new GuestRepository(db);
                 }
-
                 return guestRepository;
             }
         }
+
         public IRepository<Category> Categories
         {
             get
@@ -57,10 +57,10 @@ namespace Hotel.DAL.Repositories
                 {
                     categoryRepository = new CategoryRepository(db);
                 }
-
                 return categoryRepository;
             }
         }
+
         public IRepository<PriceCategory> PriceCategories
         {
             get
@@ -69,10 +69,10 @@ namespace Hotel.DAL.Repositories
                 {
                     priceCategoryRepository = new PriceCategoryRepository(db);
                 }
-
                 return priceCategoryRepository;
             }
         }
+
         public IRepository<Booking> Bookings
         {
             get
@@ -81,10 +81,10 @@ namespace Hotel.DAL.Repositories
                 {
                     bookingRepository = new BookingRepository(db);
                 }
-
                 return bookingRepository;
             }
         }
+
         public IUserRepository<User> Users
         {
             get
@@ -108,6 +108,7 @@ namespace Hotel.DAL.Repositories
                 return logRepository;
             }
         }
+
         public void Save()
         {
             db.SaveChanges();

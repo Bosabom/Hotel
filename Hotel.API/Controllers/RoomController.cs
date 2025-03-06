@@ -24,10 +24,10 @@ namespace Hotel.API.Controllers
             mapper = new MapperConfiguration(cfg =>
                cfg.CreateMap<RoomDTO, RoomModel>()).CreateMapper();
         }
+
         public IEnumerable<RoomModel> Get()
         {
             var data = service.GetAllRooms();
-
             var rooms = mapper.Map<IEnumerable<RoomDTO>, List<RoomModel>>(data);
             return rooms;
         }
@@ -38,13 +38,11 @@ namespace Hotel.API.Controllers
             try
             {
                 RoomDTO data = service.Get(id);
-                var room= new RoomModel();
-
+                var room = new RoomModel();
                 if (data != null)
                 {
                     room = mapper.Map<RoomDTO, RoomModel>(data);
                     return request.CreateResponse(HttpStatusCode.OK, room);
-
                 }
                 return request.CreateResponse(HttpStatusCode.NotFound);
             }
@@ -55,8 +53,6 @@ namespace Hotel.API.Controllers
         }
 
         [ResponseType(typeof(RoomModel))]
-
-       
         public HttpResponseMessage Post(HttpRequestMessage request, [FromBody] RoomModel value)
         {
             var mapper = new MapperConfiguration(cfg =>
@@ -65,20 +61,19 @@ namespace Hotel.API.Controllers
             {
                 service.Create(mapper.Map<RoomModel, RoomDTO>(value));
                 return request.CreateResponse(HttpStatusCode.Created);
-
             }
             catch (Exception ex)
             {
                 return request.CreateResponse(HttpStatusCode.BadRequest);
             }
-
         }
+
         public HttpResponseMessage Put(HttpRequestMessage request, int id, [FromBody] RoomModel value)
         {
             try
             {
                 var mapper = new MapperConfiguration(cfg =>
-             cfg.CreateMap<RoomModel, RoomDTO>()).CreateMapper();
+                    cfg.CreateMap<RoomModel, RoomDTO>()).CreateMapper();
 
                 service.Update(id, mapper.Map<RoomModel,RoomDTO>(value));
                 return request.CreateResponse(HttpStatusCode.OK);
@@ -88,6 +83,7 @@ namespace Hotel.API.Controllers
                 return request.CreateResponse(HttpStatusCode.BadRequest);
             }
         }
+
         public HttpResponseMessage Delete(HttpRequestMessage request, int id)
         {
             try

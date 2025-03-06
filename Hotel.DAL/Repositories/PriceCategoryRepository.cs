@@ -40,7 +40,6 @@ namespace Hotel.DAL.Repositories
             {
                 db.PriceCategories.Remove(pricecategory);     
             }
-           
         }
     }
 }

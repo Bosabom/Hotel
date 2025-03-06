@@ -5,6 +5,7 @@ using System.Web;
 using Ninject.Modules;
 using Hotel.BLL.Interfaces;
 using Hotel.BLL.Services;
+
 namespace Hotel.WEB.Utils
 {
     public class LogModule : NinjectModule

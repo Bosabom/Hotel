@@ -12,30 +12,28 @@ namespace Hotel.WEB.Controllers
 {
     public class UserController : Controller
     {
-
         IUserService service;
         IMapper mapper;
+
         public UserController(IUserService service)
         {
             this.service = service;
             mapper = new MapperConfiguration(cfg =>
               cfg.CreateMap<UserModel, UserDTO>()).CreateMapper();
         }
-        // GET: User
+
         public ActionResult Login()
         {
             return View();
-
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Login(UserModel user_model)
         {
             if (ModelState.IsValid)
             {
-               
-             var new_user = service.Get(mapper.Map<UserModel, UserDTO>(user_model));
-
+                var new_user = service.Get(mapper.Map<UserModel, UserDTO>(user_model));
                 if (new_user != null)
                 {
                     FormsAuthentication.SetAuthCookie(user_model.Login, true);
@@ -45,7 +43,6 @@ namespace Hotel.WEB.Controllers
                 {
                     ModelState.AddModelError("", "User not found...");
                 }
-
             }
             return View(user_model);
         }
@@ -71,7 +68,6 @@ namespace Hotel.WEB.Controllers
                 catch
                 {
                     ModelState.AddModelError("", "User with this login already exists!");
-
                 }
             }
             return View();

@@ -16,6 +16,7 @@ namespace Hotel.BLL.Services
         private IWorkUnit Database { get; set; }
         IMapper mapper;
         IMapper mapper_reverse;
+
         public PriceCategoryService(IWorkUnit database)
         {
             this.Database = database;
@@ -36,12 +37,10 @@ namespace Hotel.BLL.Services
         }
         public void Create(PriceCategoryDTO newPriceCategory)
         {
-            //проверка,а существует ли уже такая категория
             var allPriceCategories = GetAllPriceCategories();
 
             var data = allPriceCategories.Where(c => c.CategoryId == newPriceCategory.CategoryId
-           && c.StartDate == newPriceCategory.StartDate && c.EndDate == newPriceCategory.EndDate)
-               .FirstOrDefault();
+                       && c.StartDate == newPriceCategory.StartDate && c.EndDate == newPriceCategory.EndDate).FirstOrDefault();
 
             if (data != null)
             {
@@ -51,7 +50,6 @@ namespace Hotel.BLL.Services
             Database.PriceCategories.Create(mapper_reverse.Map<PriceCategoryDTO, PriceCategory>(newPriceCategory));
             Database.Save();
         }
-
 
         public void Delete(int id)
         {
@@ -64,6 +62,5 @@ namespace Hotel.BLL.Services
             else
                 throw new Exception();
         }
-
     }
 }

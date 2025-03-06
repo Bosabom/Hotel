@@ -12,7 +12,6 @@ namespace Hotel.WEB.Models
         [DisplayName("ID")]
         public int Id { get; set; }
 
-        
         [Required]
         [DisplayName("Category Name")]
         [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Letters only!")]

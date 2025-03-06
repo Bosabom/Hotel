@@ -7,10 +7,9 @@ using Hotel.DAL.EF;
 using Hotel.DAL.Entities;
 using Hotel.DAL.Interfaces;
 
-
 namespace Hotel.DAL.Repositories
 {
-    class GuestRepository:IRepository<Guest>
+    class GuestRepository : IRepository<Guest>
     {
         private HotelModel db;
         public GuestRepository(HotelModel db)
@@ -32,6 +31,7 @@ namespace Hotel.DAL.Repositories
         {
             db.Guests.Add(guest);
         }
+
         public void Update(int id, Guest guest) { }
         public void Delete(int id)
         {
@@ -39,7 +39,5 @@ namespace Hotel.DAL.Repositories
             if (guest != null)
                 db.Guests.Remove(guest);
         }
-
     }
-
 }

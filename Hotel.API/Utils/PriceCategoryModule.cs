@@ -8,7 +8,7 @@ using Hotel.BLL.Services;
 
 namespace Hotel.API.Utils
 {
-    public class PriceCategoryModule: NinjectModule
+    public class PriceCategoryModule : NinjectModule
     {
         public override void Load()
         {

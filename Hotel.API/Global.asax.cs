@@ -24,8 +24,8 @@ namespace Hotel.API
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-
             NinjectModule dependencyModule = new DependencyModule("HotelModel");
+
             //Guest
             NinjectModule guestModule = new GuestModule();
 
@@ -41,12 +41,10 @@ namespace Hotel.API
             //PriceCategory
             NinjectModule pricecategoryModule = new PriceCategoryModule();
 
-
-            var kernel = new StandardKernel(guestModule,roomModule,bookingModule,categoryModule,pricecategoryModule,dependencyModule);
+            var kernel = new StandardKernel(guestModule, roomModule, bookingModule, categoryModule, pricecategoryModule, dependencyModule);
             kernel.Bind<DefaultFilterProviders>().ToSelf().WithConstructorArgument(GlobalConfiguration.Configuration.Services.GetFilterProviders());
             kernel.Bind<DefaultModelValidatorProviders>().ToConstant(new DefaultModelValidatorProviders(GlobalConfiguration.Configuration.Services.GetModelValidatorProviders()));
             GlobalConfiguration.Configuration.DependencyResolver = new Ninject.Web.WebApi.NinjectDependencyResolver(kernel);
-
         }
     }
 }

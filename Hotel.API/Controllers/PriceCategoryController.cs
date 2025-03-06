@@ -24,10 +24,10 @@ namespace Hotel.API.Controllers
             mapper = new MapperConfiguration(cfg =>
                cfg.CreateMap<PriceCategoryDTO, PriceCategoryModel>()).CreateMapper();
         }
+
         public IEnumerable<PriceCategoryModel> Get()
         {
             var data = service.GetAllPriceCategories();
-
             var pricecategories = mapper.Map<IEnumerable<PriceCategoryDTO>, List<PriceCategoryModel>>(data);
             return pricecategories;
         }
@@ -39,14 +39,11 @@ namespace Hotel.API.Controllers
             {
                 PriceCategoryDTO data = service.Get(id);
                 var pricecategory = new PriceCategoryModel();
-
                 if (data != null)
                 {
                     pricecategory = mapper.Map<PriceCategoryDTO, PriceCategoryModel>(data);
                     return request.CreateResponse(HttpStatusCode.OK, pricecategory);
-
                 }
-
                 return request.CreateResponse(HttpStatusCode.NotFound);
             }
             catch (NullReferenceException ex)
@@ -69,9 +66,7 @@ namespace Hotel.API.Controllers
             {
                 return request.CreateResponse(HttpStatusCode.BadRequest);
             }
-
         }
-
 
         public HttpResponseMessage Delete(HttpRequestMessage request, int id)
         {

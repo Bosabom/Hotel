@@ -10,7 +10,9 @@ namespace Hotel.BLL.Interfaces
     public interface IBookingService
     {
         IEnumerable<BookingDTO> GetAllBookings();
+
         BookingDTO Get(int id);
+
         void Create(BookingDTO bookingDTO);
 
         double GetProfitForMonth(DateTime date);

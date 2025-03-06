@@ -17,9 +17,9 @@ namespace Hotel.DAL.Entities
         public double Price { get; set; }
 
         public DateTime StartDate { get; set; }
+
         public DateTime EndDate { get; set; }
 
-        //ForeignKey на Category
         public int CategoryId { get; set; }
 
         [ForeignKey("CategoryId")]

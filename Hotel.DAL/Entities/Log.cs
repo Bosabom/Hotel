@@ -11,6 +11,7 @@ namespace Hotel.DAL.Entities
     {
         [Key]
         public int Id { get; set; }
+
         public DateTime LogDate { get; set; }
 
         public string User { get; set; }
@@ -22,6 +23,5 @@ namespace Hotel.DAL.Entities
         public int EntityId { get; set; }
 
         public string Details { get; set; }
-
     }
 }

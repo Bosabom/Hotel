@@ -10,17 +10,17 @@ namespace Hotel.WEB.Models
     public class RoomModel
     {
         public int Id { get; set; }
+
         [Required]
         [DisplayName("Room Title")]
-
         public string Name { get; set; }
+
         [Required]
         [DisplayName("Active Status")]
-
         public bool Active { get; set; }
+
         [Required]
         [DisplayName("Category ID")]
-
         public int CategoryId { get; set; }
 
         public override string ToString()

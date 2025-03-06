@@ -10,8 +10,8 @@ namespace Hotel.DAL.Interfaces
     {
         IEnumerable<T> GetAll();
 
-        //IEnumerable<T> GetByDate(DateTime date);
-
         void Create(T item);
+
+        //IEnumerable<T> GetByDate(DateTime date);
     }
 }

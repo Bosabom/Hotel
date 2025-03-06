@@ -20,7 +20,8 @@ namespace Hotel.WEB.Controllers
         IMapper mapper;
         IMapper mapper_reverse;
         IMapper log_mapper;
-        public BookingController(IBookingService service,IGuestService guestService,IRoomService roomService,ILogService logService)
+
+        public BookingController(IBookingService service, IGuestService guestService, IRoomService roomService, ILogService logService)
         {
             booking_service = service;
             guest_service = guestService;
@@ -36,9 +37,9 @@ namespace Hotel.WEB.Controllers
             log_mapper = new MapperConfiguration(cfg =>
                 cfg.CreateMap<LogModel, LogDTO>()).CreateMapper();
         }
+
         private void CreateBookingLog(string _action, int _id, string _description)
         {
-
             log_service.Create(log_mapper.Map<LogModel, LogDTO>(new LogModel()
             {
                 LogDate = DateTime.Now,
@@ -49,6 +50,7 @@ namespace Hotel.WEB.Controllers
                 Details = _description
             }));
         }
+
         public ActionResult Index()
         {
             var all_bookings = mapper.Map<IEnumerable<BookingDTO>, List<BookingModel>>(booking_service.GetAllBookings());
@@ -65,7 +67,6 @@ namespace Hotel.WEB.Controllers
         {
             try
             {
-                //проверка, есть ли такие гость и комната с заданными id
                 var guest_with_this_id = guest_service.Get(newBooking.GuestId);
                 var room_with_this_id = room_service.Get(newBooking.RoomId);
 
@@ -81,7 +82,6 @@ namespace Hotel.WEB.Controllers
                 else
                 {
                     ModelState.AddModelError("", "There is no guest/room with this ID. Please, try again.");
-
                     return View();
                 }
                 return RedirectToAction("Index");
@@ -91,16 +91,17 @@ namespace Hotel.WEB.Controllers
                 return View();
             }
         }
+
         public ActionResult Details(int id)
         {
             var Booking = mapper.Map<BookingDTO, BookingModel>(booking_service.Get(id));
             return View(Booking);
         }
+
         public ActionResult Edit(int id)
         {
             return View();
         }
-
 
         [HttpPost]
         public ActionResult Edit(int id, BookingModel booking)
@@ -158,9 +159,9 @@ namespace Hotel.WEB.Controllers
             try
             {
                 var room_mapper= new MapperConfiguration(cfg =>
-               cfg.CreateMap<RoomDTO, RoomModel>()).CreateMapper();
+                        cfg.CreateMap<RoomDTO, RoomModel>()).CreateMapper();
 
-                var free_rooms = room_mapper.Map<IEnumerable<RoomDTO>, List<RoomModel>>(booking_service.GetFreeRoomsOnPeriod(date_from,date_to));
+                var free_rooms = room_mapper.Map<IEnumerable<RoomDTO>, List<RoomModel>>(booking_service.GetFreeRoomsOnPeriod(date_from, date_to));
                 FreeRoomsModel freeRoomsModel = new FreeRoomsModel()
                 {
                     FirstDate = date_from.ToShortDateString(),
@@ -168,7 +169,7 @@ namespace Hotel.WEB.Controllers
                     FreeRooms = free_rooms
                 };
 
-                return View("FreeRooms",freeRoomsModel);
+                return View("FreeRooms", freeRoomsModel);
             }
             catch
             {

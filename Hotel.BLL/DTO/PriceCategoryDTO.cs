@@ -13,11 +13,11 @@ namespace Hotel.BLL.DTO
         public double Price { get; set; }
 
         public DateTime StartDate { get; set; }
+
         public DateTime EndDate { get; set; }
 
         public int CategoryId { get; set; }
 
         public CategoryDTO Category { get; set; }
-
     }
 }

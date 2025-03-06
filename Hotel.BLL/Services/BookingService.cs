@@ -36,6 +36,7 @@ namespace Hotel.BLL.Services
         {
             return mapper.Map<Booking, BookingDTO>(Database.Bookings.Get(id));
         }
+
         public double GetProfitForMonth(DateTime date)
         {
             var reservedRooms = Database.Bookings.GetAll()
@@ -59,28 +60,23 @@ namespace Hotel.BLL.Services
                    cfg.CreateMap<Room, RoomDTO>()
                ).CreateMapper();
 
-            //id всех комнат что есть в bookings
             var rooms_id_from_bookings = Database.Bookings.GetAll().Select(r => r.RoomId);
 
-            //id тех комнат что свободны на заданный период
-            var get_free_rooms_id_by_period = Database.Bookings.GetAll().Where(res =>
-             (date_from > res.LeaveDate || date_to < res.EnterDate)).Select(r => r.RoomId);
+            var get_free_rooms_id_by_period = Database.Bookings.GetAll()
+                .Where(res => (date_from > res.LeaveDate || date_to < res.EnterDate)).Select(r => r.RoomId);
 
-            var free_rooms = Database.Rooms.GetAll().Where(r => r.Active == true && //комната активная и
-           (get_free_rooms_id_by_period.Contains(r.Id) || //такая комната свободная на заданный период в bookings
-            !rooms_id_from_bookings.Contains(r.Id)));//либо такой комнаты вообще нет в bookings
+            var free_rooms = Database.Rooms.GetAll()
+                .Where(r => r.Active == true && 
+                (get_free_rooms_id_by_period.Contains(r.Id) || !rooms_id_from_bookings.Contains(r.Id)));
 
             return room_mapper.Map<IEnumerable<Room>, List<RoomDTO>>(free_rooms);
         }
 
         public void Create(BookingDTO newBooking) 
         {
-            //получаем список свободных комнат на период времени
             var free_rooms_on_date = GetFreeRoomsOnPeriod(newBooking.EnterDate, newBooking.LeaveDate);
-            //получаем id этих свободных комнат
             var free_rooms_id=free_rooms_on_date.Select(r => r.Id);
 
-            //если есть такое id в списке свободных комнат то заселяем/бронируем
             if (free_rooms_id.Contains(newBooking.RoomId))
             {
                 Database.Bookings.Create(bookingmapper_reverse.Map<BookingDTO, Booking>(newBooking));
@@ -88,7 +84,6 @@ namespace Hotel.BLL.Services
             }
             else
                 throw new Exception();
-        
         }
 
         public void Update(int id, BookingDTO booking_for_update)
@@ -101,11 +96,10 @@ namespace Hotel.BLL.Services
             }
             else
                 throw new Exception();
-
         }
+
         public void Delete(int id) 
         {
-            //есть ли запись с таким id?
             var bookingWithThisId = Database.Bookings.Get(id);
             if (bookingWithThisId != null)
             {

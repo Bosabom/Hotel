@@ -10,6 +10,7 @@ namespace Hotel.BLL.Interfaces
     public interface ILogService
     {
         IEnumerable<LogDTO> GetAll();
+
         void Create(LogDTO logDTO);
     }
 }

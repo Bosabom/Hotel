@@ -11,6 +11,5 @@ namespace Hotel.DAL.Interfaces
         T Get(T item);
 
         void Create(T item);
-
     }
 }

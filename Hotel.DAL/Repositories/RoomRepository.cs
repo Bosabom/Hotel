@@ -36,17 +36,14 @@ namespace Hotel.DAL.Repositories
         public void Update(int id,Room updated_room)
         {
             var old_room = db.Rooms.Find(id);
-            //обновить можно только активная ли комната или нет
             old_room.Active = updated_room.Active;
 
             db.Entry(old_room).State = EntityState.Modified;
-
         }
         public void Delete(int id)
         {
             Room room = Get(id);
             db.Rooms.Remove(room);
-
         }
     }
 }

@@ -16,6 +16,7 @@ namespace Hotel.BLL.Services
         private IWorkUnit Database { get; set; }
         IMapper mapper;
         IMapper mapper_reverse;
+
         public GuestService(IWorkUnit database)
         {
             this.Database = database;
@@ -23,9 +24,9 @@ namespace Hotel.BLL.Services
                  cfg.CreateMap<Guest, GuestDTO>()).CreateMapper();
 
             mapper_reverse = new MapperConfiguration(cfg =>
-           cfg.CreateMap<GuestDTO, Guest>()).CreateMapper();
-
+                 cfg.CreateMap<GuestDTO, Guest>()).CreateMapper();
         }
+
         public IEnumerable<GuestDTO> GetAllGuests()
         {
             return mapper.Map<IEnumerable<Guest>, List<GuestDTO>>(Database.Guests.GetAll());
@@ -38,7 +39,7 @@ namespace Hotel.BLL.Services
 
         public void Create(GuestDTO newGuest)
         {
-            //проверка,а существует ли уже такой постоялец
+            //check if guests exist
             var allGuests = GetAllGuests();
 
             var data = allGuests.Where(g => g.Passport == newGuest.Passport).FirstOrDefault();
@@ -50,9 +51,9 @@ namespace Hotel.BLL.Services
            Database.Guests.Create(mapper_reverse.Map<GuestDTO, Guest>(newGuest));
            Database.Save();
         }
+
         public void Delete(int id)
         {
-            //есть ли постоялец с таким id?
             var guestWithThisId = Database.Guests.Get(id);
             if (guestWithThisId != null)
             {
@@ -62,6 +63,5 @@ namespace Hotel.BLL.Services
             else
                 throw new Exception();
         }
-
     }
 }

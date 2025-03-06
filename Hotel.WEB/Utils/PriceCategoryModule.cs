@@ -8,7 +8,7 @@ using Ninject.Modules;
 
 namespace Hotel.WEB.Utils
 {
-    public class PriceCategoryModule: NinjectModule
+    public class PriceCategoryModule : NinjectModule
     {
         public override void Load()
         {

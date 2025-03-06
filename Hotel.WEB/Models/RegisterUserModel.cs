@@ -19,7 +19,7 @@ namespace Hotel.WEB.Models
         [Required]
         [DataType(DataType.Password)]
         [DisplayName("Repeat password")]
-        [Compare("Password",ErrorMessage ="Passwords didn't match!")]
+        [Compare("Password", ErrorMessage = "Passwords didn't match!")]
         public string RepeatPassword { get; set; }
     }
 }

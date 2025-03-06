@@ -5,9 +5,10 @@ using System.Web;
 using Ninject.Modules;
 using Hotel.BLL.Interfaces;
 using Hotel.BLL.Services;
+
 namespace Hotel.API.Utils
 {
-    public class RoomModule:NinjectModule
+    public class RoomModule : NinjectModule
     {
         public override void Load()
         {

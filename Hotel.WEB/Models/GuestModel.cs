@@ -9,7 +9,6 @@ namespace Hotel.WEB.Models
 {
     public class GuestModel
     {
-        
         public int Id { get; set; }
 
         [Required]

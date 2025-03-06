@@ -12,7 +12,6 @@ namespace Hotel.WEB.Controllers
 {
     public class LogController : Controller
     {
-        // GET: Log
         IMapper mapper;
         ILogService service;
 
@@ -20,9 +19,10 @@ namespace Hotel.WEB.Controllers
         {
             this.service = service;
             mapper = new MapperConfiguration(cfg =>
-             cfg.CreateMap<LogDTO, LogModel>()).CreateMapper();
+                        cfg.CreateMap<LogDTO, LogModel>()).CreateMapper();
            
         }
+
         public ActionResult Index()
         {
             var all_logs = mapper.Map<IEnumerable<LogDTO>, List<LogModel>>(service.GetAll());

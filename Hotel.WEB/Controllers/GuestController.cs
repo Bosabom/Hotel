@@ -17,7 +17,8 @@ namespace Hotel.WEB.Controllers
 
         IMapper mapper;
         IMapper log_mapper;
-        public GuestController(IGuestService service,ILogService _log_service)
+
+        public GuestController(IGuestService service, ILogService _log_service)
         {
             guest_service = service;
             log_service = _log_service;
@@ -28,9 +29,9 @@ namespace Hotel.WEB.Controllers
             log_mapper= new MapperConfiguration(cfg =>
                cfg.CreateMap<LogModel, LogDTO>()).CreateMapper();
         }
+
         private void CreateGuestLog(string _action, int _id, string _description)
         {
-
             log_service.Create(log_mapper.Map<LogModel, LogDTO>(new LogModel()
             {
                 LogDate = DateTime.Now,
@@ -41,28 +42,29 @@ namespace Hotel.WEB.Controllers
                 Details = _description
             }));
         }
+
         public ActionResult Index()
         {
-            var all_guests = mapper.Map<IEnumerable<GuestDTO>,List<GuestModel>>(guest_service.GetAllGuests()); 
+            var all_guests = mapper.Map<IEnumerable<GuestDTO>, List<GuestModel>>(guest_service.GetAllGuests()); 
             return View(all_guests);
         }
 
-       
         public ActionResult Create()
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult Create(GuestModel newGuest)
         {
             try
             {
-                 guest_service.Create(mapper.Map<GuestModel, GuestDTO>(newGuest));
+                guest_service.Create(mapper.Map<GuestModel, GuestDTO>(newGuest));
 
                 var guest_for_log = mapper.Map<IEnumerable<GuestDTO>, List<GuestModel>>(guest_service.GetAllGuests()).
-                   FirstOrDefault(g =>g.ToString() == newGuest.ToString());
+                   FirstOrDefault(g => g.ToString() == newGuest.ToString());
 
-                CreateGuestLog("Create",guest_for_log.Id,guest_for_log.ToString());
+                CreateGuestLog("Create", guest_for_log.Id, guest_for_log.ToString());
 
                 return RedirectToAction("Index");
             }
@@ -71,11 +73,13 @@ namespace Hotel.WEB.Controllers
                 return View();
             }
         }
+
         public ActionResult Details(int id)
         {
-            var guest=mapper.Map<GuestDTO, GuestModel>(guest_service.Get(id));
+            var guest = mapper.Map<GuestDTO, GuestModel>(guest_service.Get(id));
             return View(guest);
         }
+
         public ActionResult Delete(int id)
         {
             var exactly_guest = mapper.Map<GuestDTO, GuestModel>(guest_service.Get(id));

@@ -6,13 +6,9 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 using Hotel.DAL.Entities;
 
-
 namespace Hotel.DAL.EF
 {
-
     //DropCreateDatabaseAlways
-    //DropCreateDatabaseIfModelChanges
-
     public class HotelInitializer: DropCreateDatabaseIfModelChanges<HotelModel>
     {
         private void RoomInitializer(HotelModel context)
@@ -66,16 +62,16 @@ namespace Hotel.DAL.EF
                     Name="209",
                     Active=true,
                     CategoryId=4
-
                 }
-
             };
+
             foreach (var room in roomList)
             {
                 context.Rooms.Add(room);
             }
             context.SaveChanges();
         }
+
         private void GuestInitializer(HotelModel context)
         {
             var ListOfGuests = new List<Guest>()
@@ -118,15 +114,15 @@ namespace Hotel.DAL.EF
                     Passport="0071497732",
                     Birthday=new DateTime(2003,8,19)
                 }
-
             };
+
             foreach (var guest in ListOfGuests)
             {
                 context.Guests.Add(guest);
             }
-
             context.SaveChanges();
         }
+
         private void CategoryInitializer(HotelModel context)
         {
             var ListOfCategories = new List<Category>()
@@ -157,14 +153,14 @@ namespace Hotel.DAL.EF
                     Number_Of_Places=2
                 }
             };
+
             foreach (var category in ListOfCategories)
             {
                 context.Categories.Add(category);
             }
-
             context.SaveChanges();
-
         }
+
         private void PriceCategoryInitializer(HotelModel context)
         {
             var ListOfPriceCategories = new List<PriceCategory>()
@@ -210,9 +206,9 @@ namespace Hotel.DAL.EF
             {
                 context.PriceCategories.Add(price_category);
             }
-
             context.SaveChanges();
         }
+
         private void BookingInitializer(HotelModel context)
         {
             var ListOfBookings = new List<Booking>()
@@ -261,26 +257,22 @@ namespace Hotel.DAL.EF
                     LeaveDate=new DateTime(2021,4,2,12,0,0),
                     IsGuestSettledIn=false
                 }
-
             };
+
             foreach (var booking in ListOfBookings)
             {
                 context.Bookings.Add(booking);
             }
-
             context.SaveChanges();
         }
        
         protected override void Seed(HotelModel context)
         {
-
             GuestInitializer(context);
             CategoryInitializer(context);
             RoomInitializer(context);
             PriceCategoryInitializer(context);
             BookingInitializer(context);
-           
         }
-
     }
 }

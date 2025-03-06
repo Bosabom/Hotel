@@ -10,7 +10,7 @@ namespace Hotel.BLL.Interfaces
     public interface IUserService
     {
         UserDTO Get(UserDTO userDTO);
-        void Create(UserDTO userDTO);
 
+        void Create(UserDTO userDTO);
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Hotel.DAL.EF;
 using Hotel.DAL.Entities;
 using Hotel.DAL.Interfaces;
+
 namespace Hotel.DAL.Repositories
 {
     class UserRepository : IUserRepository<User>
@@ -15,14 +16,15 @@ namespace Hotel.DAL.Repositories
         {
             this.db = db;
         }
+
         public void Create(User new_user)
         {
             db.Users.Add(new_user);
         }
+
         public User Get(User user)
         {
-            return db.Users.FirstOrDefault(u=>u.Login == user.Login);
+            return db.Users.FirstOrDefault(u => u.Login == user.Login);
         }
-       
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Newtonsoft.Json;
+
 namespace Hotel.API.Models
 {
     public class PriceCategoryModel
@@ -12,11 +12,11 @@ namespace Hotel.API.Models
         public double Price { get; set; }
 
         public DateTime StartDate { get; set; }
+
         public DateTime EndDate { get; set; }
 
-        //public CategoryModel Category { get; set; }
+        public int CategoryId { get; set; }
 
-        public int CategoryId {get;set;}
         public override bool Equals(object obj)
         {
             if (obj is PriceCategoryModel)

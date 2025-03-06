@@ -17,6 +17,7 @@ namespace Hotel.BLL.Services
         private IWorkUnit Database { get; set; }
         IMapper mapper;
         IMapper mapper_reverse;
+
         public UserService(IWorkUnit database)
         {
             this.Database = database;
@@ -26,15 +27,15 @@ namespace Hotel.BLL.Services
             mapper_reverse = new MapperConfiguration(cfg =>
                cfg.CreateMap<User, UserDTO>()).CreateMapper();
         }
+
         public UserDTO Get(UserDTO userDTO)
         {
-            var user = Database.Users.Get(mapper.Map<UserDTO,User>(userDTO));
+            var user = Database.Users.Get(mapper.Map<UserDTO, User>(userDTO));
             if(user != null && Crypto.Hash(userDTO.Password) == user.HashedPassword)
             {
                 return mapper_reverse.Map<User, UserDTO>(user);
             }
             return null;
-
         }
        
         public void Create(UserDTO new_userDTO)

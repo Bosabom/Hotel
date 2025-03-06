@@ -10,6 +10,7 @@ namespace Hotel.WEB.Models
     {
         [DisplayName("Log date and time")]
         public DateTime LogDate { get; set; }
+
         [DisplayName("User name")]
         public string User { get; set; }
         
@@ -18,10 +19,9 @@ namespace Hotel.WEB.Models
         public string Entity { get; set; }
         
         [DisplayName("ID")]
-
         public int EntityId { get; set; }
-        [DisplayName("Detailed information")]
 
+        [DisplayName("Detailed information")]
         public string Details { get; set; }
     }
 }

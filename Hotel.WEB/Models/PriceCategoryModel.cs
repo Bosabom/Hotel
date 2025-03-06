@@ -8,10 +8,10 @@ using System.Web;
 namespace Hotel.WEB.Models
 {
     public class PriceCategoryModel
-    {
-        
+    {   
         [DisplayName("ID")]
         public int Id { get; set; }
+
         [Required]
         [DisplayName("Price per night (in $)")]
         [Range(typeof(double),"100","1000",ErrorMessage="Data isn't in range (100, 1000)")]
@@ -51,6 +51,5 @@ namespace Hotel.WEB.Models
         {
             return $"Category ID = {CategoryId}; Price = {Price}; Start Date = {StartDate}; End Date = {EndDate}";
         }
-
     }
 }

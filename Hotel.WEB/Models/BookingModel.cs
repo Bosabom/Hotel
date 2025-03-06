@@ -13,7 +13,6 @@ namespace Hotel.WEB.Models
 
         [Required]
         [DisplayName("Guest ID")]
-        
         public int GuestId { get; set; }
 
         [Required]
@@ -21,12 +20,12 @@ namespace Hotel.WEB.Models
         public int RoomId { get; set; }
 
         [DisplayName("Booking Date")]
-
         public DateTime? BookingDate { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
         public DateTime EnterDate { get; set; }
+
         [DisplayName("Enter Date")]
         public string EnterDate_short
         {
@@ -51,7 +50,6 @@ namespace Hotel.WEB.Models
 
         [Required]
         [DisplayName("Settlement")]
-        
         public bool IsGuestSettledIn { get; set; }
 
         public override string ToString()

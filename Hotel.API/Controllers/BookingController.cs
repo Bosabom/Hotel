@@ -28,7 +28,7 @@ namespace Hotel.API.Controllers
             bookingmapper_reverse = new MapperConfiguration(cfg =>
             cfg.CreateMap<BookingModel, BookingDTO>()).CreateMapper();
         }
-       
+
         public IEnumerable<BookingModel> Get()
         {
             var data = service.GetAllBookings();
@@ -44,14 +44,11 @@ namespace Hotel.API.Controllers
             {
                 BookingDTO data = service.Get(id);
                 var booking = new BookingModel();
-
                 if (data != null)
                 {
                     booking = mapper.Map<BookingDTO, BookingModel>(data);
                     return request.CreateResponse(HttpStatusCode.OK, booking);
-
                 }
-
                 return request.CreateResponse(HttpStatusCode.NotFound);
             }
             catch (NullReferenceException ex)
@@ -59,19 +56,17 @@ namespace Hotel.API.Controllers
                 return request.CreateResponse(HttpStatusCode.NotFound);
             }
         }
+
         [Route("api/GetProfitForMonth/{date}")]
         public HttpResponseMessage GetProfitForMonth(HttpRequestMessage request, [FromUri] DateTime date)
         {
-
             if (date != null)
             {
                 var profit = service.GetProfitForMonth(date);
                 return request.CreateResponse(HttpStatusCode.OK, profit);
             }
             return request.CreateResponse(HttpStatusCode.NotFound);
-
         }
-
 
         [ResponseType(typeof(List<RoomModel>))]
         [Route("api/GetFreeRoomsOnDate/{date_from}/{date_to}")]
@@ -85,22 +80,19 @@ namespace Hotel.API.Controllers
             return request.CreateResponse(HttpStatusCode.OK, mapper.Map<IEnumerable<RoomDTO>, List<RoomModel>>(rooms));
         }
 
-
         public HttpResponseMessage Post(HttpRequestMessage request, [FromBody] BookingModel value)
         {
-            
             try
             {
                 service.Create(bookingmapper_reverse.Map<BookingModel, BookingDTO>(value));
                 return request.CreateResponse(HttpStatusCode.Created);
-
             }
             catch (Exception ex)
             {
                 return request.CreateResponse(HttpStatusCode.BadRequest);
             }
-
         }
+
         public HttpResponseMessage Put(HttpRequestMessage request, int id, [FromBody] BookingModel value)
         {
             try
