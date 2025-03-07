@@ -23,18 +23,19 @@ namespace Hotel.Tests
         HttpConfiguration httpConfiguration;
         HttpRequestMessage httpRequest;
         private IMapper mapper;
+
         public GuestControllerTest()
         {
-           httpConfiguration = new HttpConfiguration();
-           httpRequest = new System.Net.Http.HttpRequestMessage();
-           httpRequest.Properties[System.Web.Http.Hosting.HttpPropertyKeys.HttpConfigurationKey] = httpConfiguration;
-            
+            httpConfiguration = new HttpConfiguration();
+            httpRequest = new System.Net.Http.HttpRequestMessage();
+            httpRequest.Properties[System.Web.Http.Hosting.HttpPropertyKeys.HttpConfigurationKey] = httpConfiguration;
+
             mapper = new MapperConfiguration(cfg =>
-            cfg.CreateMap<GuestDTO, GuestModel>()).CreateMapper();
+                        cfg.CreateMap<GuestDTO, GuestModel>()).CreateMapper();
         }
-        
+
         [TestMethod]
-        public void GetAllGuestsTest ()
+        public void GetAllGuestsTest()
         {
             var mock = new Mock<IGuestService>();
             mock.Setup(a => a.GetAllGuests()).Returns(new List<GuestDTO>());
@@ -48,15 +49,14 @@ namespace Hotel.Tests
         }
 
         [TestMethod]
-
         public void GetGuestByIdTest()
         {
             int guestId = 5;
-           
+
             var GuestMock = new Mock<IGuestService>();
-            
+
             GuestMock.Setup(a => a.Get(guestId)).Returns(new GuestDTO());
-            
+
             GuestController controller = new GuestController(GuestMock.Object);
 
             var httpResponse = controller.Get(httpRequest, guestId);
@@ -67,7 +67,6 @@ namespace Hotel.Tests
         }
 
         [TestMethod]
-
         public void GetGuestById_CheckStatusCode_Test()
         {
             int guestId = 2;
@@ -83,17 +82,18 @@ namespace Hotel.Tests
 
             Assert.AreEqual(res, System.Net.HttpStatusCode.OK);
         }
+
         [TestMethod]
         public void CreateGuestTest()
         {
-
             GuestDTO new_guest = new GuestDTO()
             {
                 Id = 9,
                 Name = "Marina",
-                Surname="Koptelova"
+                Surname = "Koptelova"
 
             };
+
             var GuestMock = new Mock<IGuestService>();
 
             GuestMock.Setup(a => a.Create(new_guest));
@@ -107,6 +107,7 @@ namespace Hotel.Tests
 
             Assert.AreEqual(res, System.Net.HttpStatusCode.Created);
         }
+
         [TestMethod]
         public void DeleteGuestByIdTest()
         {

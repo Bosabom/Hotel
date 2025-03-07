@@ -7,12 +7,16 @@
 @using (Html.BeginForm("GetFreeRoomsOnPeriod", "Booking", FormMethod.Post))
 {
     <h4>Date From:</h4>
-    <input type="date" value="2021-03-30" name="date_from" /><br /><br />
+    <input type="date" value="2021-03-30" name="date_from" />
+    <br />
+    <br />
 
     <h4>Date To:</h4>
-    <input type="date" value="2021-03-30" name="date_to" /><br/><br/>
-
+    <input type="date" value="2021-03-30" name="date_to" />
+    <br />
+    <br />
 
     <p><input type="submit" value="Search" class="btn btn-primary" /></p>
 }
+
 @Html.ActionLink("Back to list", "Index")

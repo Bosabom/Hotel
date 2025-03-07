@@ -7,39 +7,31 @@
 <h2>Registration Journal</h2>
 
 <a href='@Url.Action("Create", "Booking")' class="btn btn-primary active">Add new booking</a>
-
 <a href='@Url.Action("GetFreeRoomsOnPeriod", "Booking")' class="btn btn-primary active">Show free rooms</a>
-
 <a href='@Url.Action("GetProfitForMonth", "Booking")' class="btn btn-primary active">Show profit for month</a>
-
 <br />
 <br />
 
 <table class="table table-hover table-bordered table-condensed">
     <thead>
-
-    <th>
-        @Html.DisplayNameFor(model => model.GuestId)
-    </th>
-    <th>
-        @Html.DisplayNameFor(model => model.RoomId)
-
-    </th>
-    <th>
-        @Html.DisplayNameFor(model => model.EnterDate_short)
-
-    </th>
-    <th>
-        @Html.DisplayNameFor(model => model.LeaveDate_short)
-
-    </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GuestId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoomId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EnterDate_short)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LeaveDate_short)
+        </th>
     </thead>
 
     <tbody>
         @foreach (var booking in Model)
         {
             <tr>
-
                 <td>
                     @booking.GuestId
                 </td>
@@ -61,10 +53,7 @@
 
                     <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                     @Html.ActionLink("Remove", "Delete", new { id = booking.Id })
-
                 </td>
-               
-
             </tr>
         }
     </tbody>

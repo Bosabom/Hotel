@@ -23,13 +23,14 @@ namespace Hotel.Tests
         HttpConfiguration httpConfiguration;
         HttpRequestMessage httpRequest;
         private IMapper mapper;
+
         public PriceCategoryControllerTest()
         {
             httpConfiguration = new HttpConfiguration();
             httpRequest = new System.Net.Http.HttpRequestMessage();
             httpRequest.Properties[System.Web.Http.Hosting.HttpPropertyKeys.HttpConfigurationKey] = httpConfiguration;
             mapper = new MapperConfiguration(cfg =>
-           cfg.CreateMap<PriceCategoryDTO, PriceCategoryModel>()).CreateMapper();
+                        cfg.CreateMap<PriceCategoryDTO, PriceCategoryModel>()).CreateMapper();
         }
 
         [TestMethod]
@@ -45,8 +46,8 @@ namespace Hotel.Tests
 
             CollectionAssert.AreEqual(expected, result.ToList());
         }
-        [TestMethod]
 
+        [TestMethod]
         public void GetPriceCategoryByIdTest()
         {
             int PriceCategoryId = 5;
@@ -64,7 +65,6 @@ namespace Hotel.Tests
         }
 
         [TestMethod]
-
         public void GetPriceCategoryById_CheckStatusCode_Test()
         {
             int PriceCategoryId = 3;
@@ -78,19 +78,17 @@ namespace Hotel.Tests
             var res = httpResponse.StatusCode;
             Assert.AreEqual(res, System.Net.HttpStatusCode.OK);
         }
+
         [TestMethod]
         public void CreatePriceCategoryTest()
         {
-
             PriceCategoryDTO new_Pricecategory = new PriceCategoryDTO()
             {
-
                 Price = 500.5,
                 StartDate = new DateTime(2022, 01, 01),
                 EndDate = new DateTime(2022, 07, 01)
-
-
             };
+
             var PriceCategoryMock = new Mock<IPriceCategoryService>();
 
             PriceCategoryMock.Setup(a => a.Create(new_Pricecategory));
@@ -104,6 +102,7 @@ namespace Hotel.Tests
 
             Assert.AreEqual(res, System.Net.HttpStatusCode.Created);
         }
+
         [TestMethod]
         public void DeletePriceCategoryByIDTest()
         {

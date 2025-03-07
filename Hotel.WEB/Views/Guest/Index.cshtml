@@ -11,10 +11,9 @@
 
 <table class="table table-hover table-bordered table-condensed">
     <thead>
-    <th>
-        @Html.DisplayNameFor(model => model.FullName)
-    </th>
-    
+        <th>
+            @Html.DisplayNameFor(model => model.FullName)
+        </th>
     </thead>
 
     <tbody>
@@ -30,12 +29,8 @@
 
                     <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                     @Html.ActionLink("Remove", "Delete", new { id = guest.Id })
-
-
                 </td>
-            
             </tr>
         }
     </tbody>
 </table>
-

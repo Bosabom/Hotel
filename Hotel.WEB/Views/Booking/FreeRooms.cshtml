@@ -7,6 +7,7 @@
 <h4>
     List of free rooms on period @Model.FirstDate - @Model.SecondDate
 </h4>
+
 <table class="table table-hover table-bordered table-condensed">
     <tr>
         <th>
@@ -18,7 +19,6 @@
         <th>
             Category Id
         </th>
-
     </tr>
 
     @foreach (var room in Model.FreeRooms)
@@ -30,16 +30,13 @@
             <td>
                 @room.Name
             </td>
-            
             <td>
                 @room.CategoryId
-
             </td>
-
         </tr>
     }
-
 </table>
+
 <div>
     @Html.ActionLink("Back to bookings", "Index")
     @Html.ActionLink("Return", "GetFreeRoomsOnPeriod")

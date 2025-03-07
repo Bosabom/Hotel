@@ -23,13 +23,14 @@ namespace Hotel.Tests
         HttpConfiguration httpConfiguration;
         HttpRequestMessage httpRequest;
         private IMapper mapper;
+
         public CategoryControllerTest()
         {
             httpConfiguration = new HttpConfiguration();
             httpRequest = new System.Net.Http.HttpRequestMessage();
             httpRequest.Properties[System.Web.Http.Hosting.HttpPropertyKeys.HttpConfigurationKey] = httpConfiguration;
             mapper = new MapperConfiguration(cfg =>
-            cfg.CreateMap<CategoryDTO, CategoryModel>()).CreateMapper();
+                        cfg.CreateMap<CategoryDTO, CategoryModel>()).CreateMapper();
         }
 
         [TestMethod]
@@ -47,14 +48,11 @@ namespace Hotel.Tests
         }
 
         [TestMethod]
-
         public void GetCategoryByIdTest()
         {
             int CategoryId = 2;
-           
 
             var CategoryMock = new Mock<ICategoryService>();
-
 
             CategoryMock.Setup(a => a.Get(CategoryId)).Returns(new CategoryDTO());
 
@@ -66,13 +64,12 @@ namespace Hotel.Tests
 
             Assert.AreEqual(expected, result.Result);
         }
-        [TestMethod]
 
+        [TestMethod]
         public void GetCategoryById_CheckStatusCode_Test()
         {
             int CategoryId = 1;
             var CategoryMock = new Mock<ICategoryService>();
-
 
             CategoryMock.Setup(a => a.Get(CategoryId)).Returns(new CategoryDTO());
 
@@ -83,18 +80,16 @@ namespace Hotel.Tests
 
             Assert.AreEqual(res, System.Net.HttpStatusCode.OK);
         }
+
         [TestMethod]
         public void CreateCategoryTest()
         {
-
-            CategoryDTO new_category= new CategoryDTO()
+            CategoryDTO new_category = new CategoryDTO()
             {
-               
                 Name = "President",
-                Number_Of_Places=1
-                
-
+                Number_Of_Places = 1
             };
+
             var CategoryMock = new Mock<ICategoryService>();
 
             CategoryMock.Setup(a => a.Create(new_category));
@@ -108,6 +103,7 @@ namespace Hotel.Tests
 
             Assert.AreEqual(res, System.Net.HttpStatusCode.Created);
         }
+
         [TestMethod]
         public void DeleteCategoryByIDTest()
         {
@@ -115,7 +111,7 @@ namespace Hotel.Tests
 
             var CategoryMock = new Mock<ICategoryService>();
 
-          CategoryMock.Setup(a => a.Delete(CategoryId));
+            CategoryMock.Setup(a => a.Delete(CategoryId));
 
             CategoryController controller = new CategoryController(CategoryMock.Object);
 

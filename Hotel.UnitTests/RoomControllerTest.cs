@@ -23,22 +23,21 @@ namespace Hotel.Tests
         HttpConfiguration httpConfiguration;
         HttpRequestMessage httpRequest;
         private IMapper mapper;
+
         public RoomControllerTest()
         {
             httpConfiguration = new HttpConfiguration();
             httpRequest = new System.Net.Http.HttpRequestMessage();
             httpRequest.Properties[System.Web.Http.Hosting.HttpPropertyKeys.HttpConfigurationKey] = httpConfiguration;
 
-           
             mapper = new MapperConfiguration(cfg =>
-            cfg.CreateMap<RoomDTO, RoomModel>()).CreateMapper();
+                            cfg.CreateMap<RoomDTO, RoomModel>()).CreateMapper();
         }
 
         [TestMethod]
         public void GetAllRoomsTest()
         {
             var RoomMock = new Mock<IRoomService>();
-            
 
             RoomMock.Setup(a => a.GetAllRooms()).Returns(new List<RoomDTO>());
 
@@ -51,13 +50,11 @@ namespace Hotel.Tests
         }
 
         [TestMethod]
-
         public void GetRoomByIdTest()
         {
             int RoomId = 6;
 
             var RoomMock = new Mock<IRoomService>();
-
 
             RoomMock.Setup(a => a.Get(RoomId)).Returns(new RoomDTO());
 
@@ -70,15 +67,12 @@ namespace Hotel.Tests
             Assert.AreEqual(expected, result.Result);
         }
 
-
         [TestMethod]
-
         public void GetRoomById_CheckStatusCode_Test()
         {
             int RoomId = 2;
 
             var RoomMock = new Mock<IRoomService>();
-
 
             RoomMock.Setup(a => a.Get(RoomId)).Returns(new RoomDTO());
 
@@ -93,21 +87,20 @@ namespace Hotel.Tests
         [TestMethod]
         public void CreateRoomTest()
         {
-           
             RoomDTO new_room = new RoomDTO()
             {
-                Id=9,
-                Name="500a",
+                Id = 9,
+                Name = "500a",
                 Active = false
-
             };
+
             var RoomMock = new Mock<IRoomService>();
 
             RoomMock.Setup(a => a.Create(new_room));
 
             RoomController controller = new RoomController(RoomMock.Object);
 
-            var httpResponse = controller.Post(httpRequest,mapper.Map<RoomDTO, RoomModel>(new_room));
+            var httpResponse = controller.Post(httpRequest, mapper.Map<RoomDTO, RoomModel>(new_room));
             var res = httpResponse.StatusCode;
 
             Assert.IsNotNull(httpResponse);
@@ -144,20 +137,19 @@ namespace Hotel.Tests
             {
                 Active = false
             };
+
             var RoomMock = new Mock<IRoomService>();
 
-            RoomMock.Setup(a => a.Update(id,room_with_updates));
-            
+            RoomMock.Setup(a => a.Update(id, room_with_updates));
+
             RoomController controller = new RoomController(RoomMock.Object);
 
-            var httpResponse = controller.Put(httpRequest, id,mapper.Map<RoomDTO,RoomModel>(room_with_updates));
+            var httpResponse = controller.Put(httpRequest, id, mapper.Map<RoomDTO, RoomModel>(room_with_updates));
             var res = httpResponse.StatusCode;
 
             Assert.IsNotNull(httpResponse);
 
             Assert.AreEqual(res, System.Net.HttpStatusCode.OK);
         }
-
-
     }
 }

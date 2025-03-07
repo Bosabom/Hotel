@@ -9,11 +9,11 @@
 <a href='@Url.Action("Create", "PriceCategory")' class="btn btn-primary active">Add new price category</a>
 <br />
 <br />
+
 <table class="table table-hover table-bordered table-condensed">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Id
-       )
+            @Html.DisplayNameFor(model => model.Id)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Price)
@@ -27,34 +27,32 @@
         <th>
             @Html.DisplayNameFor(model => model.CategoryId)
         </th>
-       
     </tr>
 
     @foreach (var price_category in Model)
     {
-<tr>
-    <td>
-        @price_category.Id
-    </td>
-    <td>
-        @price_category.Price
-    </td>
-    <td>
-        @price_category.StartDate_short
+        <tr>
+            <td>
+                @price_category.Id
+            </td>
+            <td>
+                @price_category.Price
+            </td>
+            <td>
+                @price_category.StartDate_short
 
-    </td>
-    <td>
-        @price_category.EndDate_short
+            </td>
+            <td>
+                @price_category.EndDate_short
 
-    </td>
-    <td>
-        @price_category.CategoryId
-    </td>
-    <td>
-        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-        @Html.ActionLink("Remove", "Delete", new { id = price_category.Id })
-    </td>
-</tr>
+            </td>
+            <td>
+                @price_category.CategoryId
+            </td>
+            <td>
+                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                @Html.ActionLink("Remove", "Delete", new { id = price_category.Id })
+            </td>
+        </tr>
     }
-
 </table>

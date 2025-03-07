@@ -15,6 +15,7 @@ using System.Linq;
 using Hotel.DAL.Repositories;
 using System.Web.Http;
 using Newtonsoft.Json;
+
 namespace Hotel.Tests
 {
     [TestClass]
@@ -23,14 +24,15 @@ namespace Hotel.Tests
         HttpConfiguration httpConfiguration;
         HttpRequestMessage httpRequest;
         private IMapper mapper;
+
         public BookingControllerTest()
         {
             httpConfiguration = new HttpConfiguration();
             httpRequest = new System.Net.Http.HttpRequestMessage();
             httpRequest.Properties[System.Web.Http.Hosting.HttpPropertyKeys.HttpConfigurationKey] = httpConfiguration;
-           
+
             mapper = new MapperConfiguration(cfg =>
-           cfg.CreateMap<BookingDTO, BookingModel>()).CreateMapper();
+                        cfg.CreateMap<BookingDTO, BookingModel>()).CreateMapper();
 
         }
 
@@ -38,7 +40,7 @@ namespace Hotel.Tests
         public void GetAllBookingsTest()
         {
             var mock = new Mock<IBookingService>();
-           
+
             mock.Setup(a => a.GetAllBookings()).Returns(new List<BookingDTO>());
 
             var expected = mapper.Map<IEnumerable<BookingDTO>, List<BookingModel>>(mock.Object.GetAllBookings());
@@ -50,7 +52,6 @@ namespace Hotel.Tests
         }
 
         [TestMethod]
-
         public void GetBookingByIdTest()
         {
             int BookingId = 1;
@@ -69,7 +70,6 @@ namespace Hotel.Tests
         }
 
         [TestMethod]
-
         public void GetBookingById_CheckStatusCode_Test()
         {
             int BookingId = 3;
@@ -82,8 +82,8 @@ namespace Hotel.Tests
 
             var httpResponse = controller.Get(httpRequest, BookingId);
             var res = httpResponse.StatusCode;
-            
-            Assert.AreEqual(res,System.Net.HttpStatusCode.OK);
+
+            Assert.AreEqual(res, System.Net.HttpStatusCode.OK);
         }
 
         [TestMethod]
@@ -93,7 +93,6 @@ namespace Hotel.Tests
             DateTime date_from = new DateTime(2021, 05, 11);
             DateTime date_to = new DateTime(2021, 08, 30);
             var mock = new Mock<IBookingService>();
-
 
             mock.Setup(a => a.GetFreeRoomsOnPeriod(date_from, date_to)).Returns(new List<RoomDTO>());
 
@@ -107,10 +106,9 @@ namespace Hotel.Tests
         }
 
         [TestMethod]
-
         public void GetProfitForMonthTest()
         {
-            DateTime date = new DateTime(2021,08,01);
+            DateTime date = new DateTime(2021, 08, 01);
             var BookingMock = new Mock<IBookingService>();
 
             BookingMock.Setup(a => a.GetProfitForMonth(date));
@@ -121,11 +119,9 @@ namespace Hotel.Tests
             var result = httpResponse.Content.ReadAsAsync<double>();
             var expected = BookingMock.Object.GetProfitForMonth(date);
             Assert.AreEqual(expected, result.Result);
-            
         }
 
         [TestMethod]
-
         public void GetProfitForMonth_CheckingStatusCode_Test()
         {
             DateTime date = new DateTime(2021, 08, 01);
@@ -137,24 +133,22 @@ namespace Hotel.Tests
 
             var httpResponse = controller.GetProfitForMonth(httpRequest, date);
             var res = httpResponse.StatusCode;
-            
+
             Assert.AreEqual(res, System.Net.HttpStatusCode.OK);
         }
 
         [TestMethod]
         public void CreateBookingTest()
         {
-
             BookingDTO new_booking = new BookingDTO()
             {
                 IsGuestSettledIn = false,
                 GuestId = 4,
                 RoomId = 8,
                 EnterDate = new DateTime(2021, 12, 15),
-                LeaveDate=new DateTime(2021,12,25)
-
-
+                LeaveDate = new DateTime(2021, 12, 25)
             };
+
             var BookingMock = new Mock<IBookingService>();
 
             BookingMock.Setup(a => a.Create(new_booking));
@@ -167,6 +161,7 @@ namespace Hotel.Tests
             Assert.IsNotNull(httpResponse);
             Assert.AreEqual(res, System.Net.HttpStatusCode.Created);
         }
+
         [TestMethod]
         public void DeleteBookingByIDTest()
         {
@@ -200,14 +195,12 @@ namespace Hotel.Tests
 
             BookingController controller = new BookingController(BookingMock.Object);
 
-            var httpResponse = controller.Put(httpRequest, id,mapper.Map<BookingDTO,BookingModel>(booking_with_updates));
+            var httpResponse = controller.Put(httpRequest, id, mapper.Map<BookingDTO, BookingModel>(booking_with_updates));
             var res = httpResponse.StatusCode;
 
             Assert.IsNotNull(httpResponse);
             Assert.AreEqual(res, System.Net.HttpStatusCode.OK);
 
         }
-
-        
     }
 }

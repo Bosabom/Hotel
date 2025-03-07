@@ -9,7 +9,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Booking</h4>
         <hr />
@@ -36,9 +36,12 @@
             @Html.LabelFor(model => model.IsGuestSettledIn, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
+                    <h4>Is guest settled in?</h4>
                     @Html.RadioButton("IsGuestSettledIn", "true", true)
+
                     <span>True</span> <br />
                     @Html.RadioButton("IsGuestSettledIn", "false")
+
                     <span>False</span> <br />
                     @Html.ValidationMessageFor(model => model.IsGuestSettledIn, "", new { @class = "text-danger" })
                 </div>
