@@ -29,6 +29,7 @@
 /Hotel.WEB/favicon.ico
 /Hotel.WEB/Web.Debug.config
 /Hotel.WEB/Web.Release.config
+/Hotel.WEB/Scripts
 /.vs/Hotel/FileContentIndex/
 
 .vscode/*
